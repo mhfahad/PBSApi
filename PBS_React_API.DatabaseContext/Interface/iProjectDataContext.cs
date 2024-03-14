@@ -24,11 +24,9 @@ namespace PBS_React_API.DatabaseContext.Interface
                   string mDesc1 = "", string mDesc2 = "", string mDesc3 = "", string mDesc4 = "", string mDesc5 = "", string mDesc6 = "", string mDesc7 = "", string mDesc8 = "",
                   string mDesc9 = "", string mDesc10 = "", string mDesc11 = "", string mDesc12 = "", string mDesc13 = "", string mDesc14 = "", string mDesc15 = "",
                   string mDesc16 = "", string mDesc17 = "", string mDesc18 = "", string mDesc19 = "", string mDesc20 = "", string @userid = "");
-        bool UpdateTransInfo(string comCode, string SQLprocName, string CallType,
+        bool UpdateTransInfo(string SQLprocName, string CallType,
              string mDesc1 = "", string mDesc2 = "", string mDesc3 = "", string mDesc4 = "", string mDesc5 = "", string mDesc6 = "",
-             string mDesc7 = "", string mDesc8 = "", string mDesc9 = "", string mDesc10 = "", string mDesc11 = "", string mDesc12 = "",
-             string mDesc13 = "", string mDesc14 = "", string mDesc15 = "", string mDesc16 = "", string mDesc17 = "", string mDesc18 = "",
-             string mDesc19 = "", string mDesc20 = "", string mUserID = "");
+             string mDesc7 = "", string mDesc8 = "", string mDesc9 = "", string mDesc10 = "");
         bool UpdateXmlTransInfo(string comCode, string SQLprocName, string CallType, DataSet parmXml01 = null, DataSet parmXml02 = null, byte[] parmbyte = null,
  string mDesc1 = "", string mDesc2 = "", string mDesc3 = "", string mDesc4 = "", string mDesc5 = "", string mDesc6 = "",
             string mDesc7 = "", string mDesc8 = "", string mDesc9 = "", string mDesc10 = "", string mDesc11 = "", string mDesc12 = "",

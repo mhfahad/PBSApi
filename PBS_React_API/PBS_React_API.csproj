@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PBS_React_API.DatabaseContext\PBS_React_API.DatabaseContext.csproj" />
+    <ProjectReference Include="..\PBS_React_API.BLL\PBS_React_API.BLL.csproj" />
   </ItemGroup>
 
 </Project>

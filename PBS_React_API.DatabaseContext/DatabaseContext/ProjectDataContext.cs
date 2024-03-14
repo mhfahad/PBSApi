@@ -158,11 +158,9 @@ namespace PBS_React_API.DatabaseContext.DatabaseContext
 
 
         
-        public bool UpdateTransInfo(string comCode, string SQLprocName, string CallType,
+        public bool UpdateTransInfo(string SQLprocName, string CallType,
              string mDesc1 = "", string mDesc2 = "", string mDesc3 = "", string mDesc4 = "", string mDesc5 = "", string mDesc6 = "",
-             string mDesc7 = "", string mDesc8 = "", string mDesc9 = "", string mDesc10 = "", string mDesc11 = "", string mDesc12 = "",
-             string mDesc13 = "", string mDesc14 = "", string mDesc15 = "", string mDesc16 = "", string mDesc17 = "", string mDesc18 = "",
-             string mDesc19 = "", string mDesc20 = "", string mUserID = "")
+             string mDesc7 = "", string mDesc8 = "", string mDesc9 = "", string mDesc10 = "")
         {
             try
             {
@@ -170,7 +168,6 @@ namespace PBS_React_API.DatabaseContext.DatabaseContext
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQLprocName;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Comp1", comCode));
                 cmd.Parameters.Add(new SqlParameter("@CallType", CallType));
                 cmd.Parameters.Add(new SqlParameter("@Desc1", mDesc1));
                 cmd.Parameters.Add(new SqlParameter("@Desc2", mDesc2));
@@ -182,17 +179,6 @@ namespace PBS_React_API.DatabaseContext.DatabaseContext
                 cmd.Parameters.Add(new SqlParameter("@Desc8", mDesc8));
                 cmd.Parameters.Add(new SqlParameter("@Desc9", mDesc9));
                 cmd.Parameters.Add(new SqlParameter("@Desc10", mDesc10));
-                cmd.Parameters.Add(new SqlParameter("@Desc11", mDesc11));
-                cmd.Parameters.Add(new SqlParameter("@Desc12", mDesc12));
-                cmd.Parameters.Add(new SqlParameter("@Desc13", mDesc13));
-                cmd.Parameters.Add(new SqlParameter("@Desc14", mDesc14));
-                cmd.Parameters.Add(new SqlParameter("@Desc15", mDesc15));
-                cmd.Parameters.Add(new SqlParameter("@Desc16", mDesc16));
-                cmd.Parameters.Add(new SqlParameter("@Desc17", mDesc17));
-                cmd.Parameters.Add(new SqlParameter("@Desc18", mDesc18));
-                cmd.Parameters.Add(new SqlParameter("@Desc19", mDesc19));
-                cmd.Parameters.Add(new SqlParameter("@Desc20", mDesc20));
-                cmd.Parameters.Add(new SqlParameter("@UserID", mUserID));
                 bool _result = _dataAccess.ExecuteCommand(cmd);
                 if (_result == false)  //_result==false
                 {

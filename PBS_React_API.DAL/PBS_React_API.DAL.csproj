@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DAL\" />
-    <Folder Include="Interface\" />
+    <ProjectReference Include="..\PBS_React_API.DatabaseContext\PBS_React_API.DatabaseContext.csproj" />
   </ItemGroup>
 
 </Project>
