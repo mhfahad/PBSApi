@@ -37,7 +37,7 @@ builder.Services.AddCors(option =>
 {
     option.AddPolicy(name: MyAllowSpecificOrigins, policy =>
     {
-        policy.WithOrigins("https://beta.pbs.com.bd","https://localhost:44354");
+        policy.WithOrigins("https://beta.pbs.com.bd", "https://pbs.com.bd", "https://localhost:44354");
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
     });

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PBS_React_API.BLL.BLL
 {
     public class DataSyncManager : IDataSyncManager
@@ -41,25 +42,30 @@ namespace PBS_React_API.BLL.BLL
                 DataView dv = new DataView();
                 dv.Table = ds.Tables[0]; ;
 
-                string likeQuery = "'%%'", likeQueryAuthorNameBn = "'%%'", likeQueryPublisherNameBN = "'%%'", likeQueryNameBN = "'%%'", likeQueryKeyword = "'%%'";
+                string likeQuery = "'%%'", likeQueryAuthorNameBn = "'%%'", likeQueryPublisherNameBN = "'%%'", likeQueryNameBN = "'%%'", likeQueryKeyword = "'%%'", likeQueryMetaTag = "'%%'";
+                string searchQuery = "'%%'", searchQueryAuthorNameBn = "'%%'", searchQueryPublisherNameBN = "'%%'", searchQueryNameBN = "'%%'", searchQueryKeyword = "'%%'", searchQueryMetaTag = "'%%'";
 
                 if (!string.IsNullOrEmpty(SerText))
                 {
-                    var replaceSearchText = SerText.Replace("'", "");
-                    var splitData = replaceSearchText.Split(" ");
+                    var replaceSearchText = SerText.Replace("&", " ").Replace("and", " ").Replace("*", " ").Replace(",", " ").Replace("-", " ");
+                    var replaceSearchText2 = replaceSearchText.Replace("  ", " ").Replace("   ", " ").Replace("    ", " ");
+                    var splitData = replaceSearchText2.Split(" ");
                     likeQuery = string.Format("'%{0}%'", string.Join("%' AND name LIKE '%", splitData.Where(s => s != "")));
                     likeQueryKeyword = string.Format("'%{0}%'", string.Join("%' AND SearchingKeyword LIKE '%", splitData.Where(s => s != "")));
                     likeQueryNameBN = string.Format("'%{0}%'", string.Join("%' AND NameBN LIKE '%", splitData.Where(s => s != "")));
                     likeQueryAuthorNameBn = string.Format("'%{0}%'", string.Join("%' AND AuthorNameBn LIKE '%", splitData.Where(s => s != "")));
                     likeQueryPublisherNameBN = string.Format("'%{0}%'", string.Join("%' AND PublisherNameBN LIKE '%", splitData.Where(s => s != "")));
+                    likeQueryMetaTag = string.Format("'%{0}%'", string.Join("%' AND PublisherNameBN LIKE '%", splitData.Where(s => s != "")));
+
                 }
+                dv.RowFilter = "(name like " + likeQuery + ") or (NameBN like " + likeQueryNameBN + ") or (AuthorNameBn like " + likeQueryAuthorNameBn + ") or (PublisherNameBN like " + likeQueryPublisherNameBN + ") or (MetaTag like " + likeQueryMetaTag + ") or (SearchingKeyword like " + likeQueryKeyword + ")";
 
-
-                dv.RowFilter = "(name like " + likeQuery + ") or (NameBN like " + likeQueryNameBN + ") or (AuthorNameBn like " + likeQueryAuthorNameBn + ") or (PublisherNameBN like " + likeQueryPublisherNameBN + ") or (SearchingKeyword like " + likeQueryKeyword + ")" ;
                
+                
                 if (dv.Count > 0)
                 {
                     dt = dv.ToTable().Rows.Cast<System.Data.DataRow>().Take(20).CopyToDataTable();
+                    
 
                 }
                 else
@@ -86,21 +92,23 @@ namespace PBS_React_API.BLL.BLL
                 DataView dv = new DataView();
                 dv.Table = ds.Tables[0];
                 SerText = SerText.Replace("ndprsnt", "&");
-                string likeQuery = "'%%'", likeQueryAuthorNameBn = "'%%'", likeQueryPublisherNameBN = "'%%'", likeQueryNameBN = "'%%'", likeQueryKeyword = "'%%'";
+                string likeQuery = "'%%'", likeQueryAuthorNameBn = "'%%'", likeQueryPublisherNameBN = "'%%'", likeQueryNameBN = "'%%'", likeQueryKeyword = "'%%'", likeQueryMetaTag = "'%%'";
 
                 if (!string.IsNullOrEmpty(SerText))
                 {
-                    var replaceSearchText = SerText.Replace("'", "");
-                    var splitData = replaceSearchText.Split(" ");
+                    var replaceSearchText = SerText.Replace("&", " ").Replace("and", " ").Replace("*", " ").Replace(",", " ").Replace("-", " ");
+                    var replaceSearchText2 = replaceSearchText.Replace("  ", " ").Replace("   ", " ").Replace("    ", " ");
+                    var splitData = replaceSearchText2.Split(" ");
                     likeQuery = string.Format("'%{0}%'", string.Join("%' AND name LIKE '%", splitData.Where(s => s != "")));
                     likeQueryKeyword = string.Format("'%{0}%'", string.Join("%' AND SearchingKeyword LIKE '%", splitData.Where(s => s != "")));
                     likeQueryNameBN = string.Format("'%{0}%'", string.Join("%' AND NameBN LIKE '%", splitData.Where(s => s != "")));
                     likeQueryAuthorNameBn = string.Format("'%{0}%'", string.Join("%' AND AuthorNameBn LIKE '%", splitData.Where(s => s != "")));
                     likeQueryPublisherNameBN = string.Format("'%{0}%'", string.Join("%' AND PublisherNameBN LIKE '%", splitData.Where(s => s != "")));
+                    likeQueryMetaTag = string.Format("'%{0}%'", string.Join("%' AND PublisherNameBN LIKE '%", splitData.Where(s => s != "")));
                 }
 
 
-                dv.RowFilter = "(name like " + likeQuery + ") or (NameBN like " + likeQueryNameBN + ") or (AuthorNameBn like " + likeQueryAuthorNameBn + ") or (PublisherNameBN like " + likeQueryPublisherNameBN + ") or (SearchingKeyword like " + likeQueryKeyword + ")" ;
+                dv.RowFilter = "(name like " + likeQuery + ") or (NameBN like " + likeQueryNameBN + ") or (AuthorNameBn like " + likeQueryAuthorNameBn + ") or (PublisherNameBN like " + likeQueryPublisherNameBN + ") or (MetaTag like " + likeQueryMetaTag + ") or (SearchingKeyword like " + likeQueryKeyword + ")" ;
                
                 return dv.ToTable();
 
